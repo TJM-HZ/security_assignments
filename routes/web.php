@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// I wanted the landing page to also be the posts.index page.
+Route::get('/', [PostController::class, 'index']);
+
+Route::resource('/posts', PostController::class);
+
+Route::resource('/users', UserController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
