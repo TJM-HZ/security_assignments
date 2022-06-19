@@ -39,8 +39,11 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $validated = $request->validated();
+        // TODO: Should it be done this way?
+        $request->validate((new \App\Http\Requests\StorePostRequest)->rules());
 
+
+        // TODO: Could this be made DRY somehow?
         $post = new Post();
         $post->title = $request->title;
         $post->body = preg_replace('~(\R{2})\R+~', '$1', $request->input('body')); // This ensures there will be no more than 2 newlines in a row
@@ -82,7 +85,7 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         // TODO: Not sure if this does what it's supposed to do
-        $validated = $request->validated();
+        $request->validated();
 
         // TODO: This should probably get cleaned up a bit
 
