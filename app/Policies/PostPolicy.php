@@ -41,7 +41,11 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        //
+        if ($user !== null) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -53,7 +57,11 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        //
+        if ($user->id === $post->user_id) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -65,7 +73,11 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        //
+//        if ($user->id === $post->user_id) {
+//            return true;
+//        }
+
+        return optional($user)->id === $post->user_id;
     }
 
     /**

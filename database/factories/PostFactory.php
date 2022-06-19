@@ -19,7 +19,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->paragraph(1),
-            'text' => '<p>'.implode('</p><p>', $this->faker->paragraphs(5)).'</p>',
+            'body' => $this->faker->paragraph($nbSentences = 20, $variableNbSentences = true),
             'user_id' => User::factory()
         ];
     }

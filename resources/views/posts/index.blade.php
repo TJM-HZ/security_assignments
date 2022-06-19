@@ -3,14 +3,20 @@
 @foreach($posts as $post)
         <a href="{{route('posts.show', $post)}}">
     <div class="flex justify-left">
-        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-m">
             <h2 class="text-gray-900 text-xl leading-tight font-medium mb-2">{{$post->title}}</h2>
             <p class="text-gray-700 text-base mb-4">
-                Posted by <b>{{$post->user_id}}</b> on {{$post->created_at}}
-            </p>
-            <p class="text-gray-500 text-sm mb-4">
-                (Last updated on {{$post->updated_at}})
-            </p>
+                Posted by <b>{{$post->user->name}}</b> on {{$post->created_at}}</p>
+            <span class="text-gray-500 text-sm mb-4">
+                (Last updated on {{$post->updated_at}})</span>
+
+{{--            @can('delete', $post)--}}
+            <form method="POST" action="{{route('posts.show', $post)}}">
+                @csrf
+                @method('delete')
+                <button type="submit">DELETE POST</button>
+            </form>
+{{--            @endcan--}}
 {{--            <button--}}
 {{--                type="button"--}}
 {{--                    class=" inline-block px-6 py-2.5--}}
