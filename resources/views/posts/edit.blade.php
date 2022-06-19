@@ -1,16 +1,17 @@
 <x-app-layout>
     <x-slot name="slot">
-        <form method="POST" action="{{route('posts.index')}}">
+        <form method="POST" action="{{route('posts.show', $post)}}">
             @csrf
+            @method('PUT')
             <p class="text-3xl">
-                Create a new post
+                Edit post
             </p> <br>
 
             <div class="field">
 {{--                <label class="label">Title</label>--}}
-                <div class="control">
+                <div>
                     <input name="title" class="input @error('title') @enderror w-3/4"
-                           type="text" placeholder="Title">
+                           type="text" placeholder="Title" value="{{$post->title}}">
                 </div>
                 @error('title')
                 <p class="text-red-600">{{ $message }}</p>
@@ -19,9 +20,9 @@
             <br>
             <div>
 {{--                <label class="label">Text</label>--}}
-                <div class="control">
+                <div>
                 <textarea name="body" class="textarea @error('body') @enderror w-3/4"
-                          rows="15" placeholder="Body text of your post"></textarea>
+                          rows="15" placeholder="Body text of your post">{{$post->body}}</textarea>
                 </div>
                 @error('body')
                 <p class="text-red-600">{{ $message }}</p>
@@ -32,7 +33,7 @@
             <div class="">
                 {{-- Here are the form buttons: save, reset and cancel --}}
                 <div class="control">
-                    <button type="submit">Save</button>
+                    <button type="submit">Update Post</button>
                 </div>
                 <div class="control">
                     <button type="reset">Reset</button>
@@ -40,6 +41,14 @@
                 <div class="control">
                     <a type="button" href="/posts">Cancel</a>
                 </div>
+            </div>
+        </form>
+
+        <form method="POST" action="{{ route('posts.destroy', $post) }}">
+            @csrf
+            @method('DELETE')
+            <div class="control">
+                <button type="submit">DELETE</button>
             </div>
         </form>
     </x-slot>

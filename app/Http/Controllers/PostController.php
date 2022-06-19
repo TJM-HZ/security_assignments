@@ -43,7 +43,7 @@ class PostController extends Controller
 
         $post = new Post();
         $post->title = $request->title;
-        $post->body = $request->body;
+        $post->body = preg_replace('~(\R{2})\R+~', '$1', $request->input('body')); // This ensures there will be no more than 2 newlines in a row
         $post->user_id = Auth::user()->id;
         $post->save();
 
@@ -81,7 +81,15 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $validated = $request->validated();
+
+        $post = new Post();
+        $post->title = $request->title;
+        $post->body = preg_replace('~(\R{2})\R+~', '$1', $request->input('body')); // This ensures there will be no more than 2 newlines in a row
+        $post->user_id = Auth::user()->id;
+        $post->save();
+
+        return redirect(route('posts.show', $post));
     }
 
     /**

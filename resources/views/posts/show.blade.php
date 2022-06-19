@@ -3,17 +3,19 @@
     <div class="text-4xl"><b>{{$post->title}}</b></div>
     <div>Posted by <b>{{$post->user->name}}</b> on {{$post->created_at}}
         <span class="text-gray-500">(last updated on {{$post->updated_at}})</span></div>
-    <div>{{$post->body}}</div>
+    <div>{!! nl2br(e($post->body))!!}</div>
 
         <br>
 
-        @can('delete', $post)
+{{--        @can('delete', $post)--}}
 {{--            <form method="POST" action="{{route('posts.show', $post)}}">--}}
 {{--                @csrf--}}
 {{--                @method('delete')--}}
 {{--                <button type="submit">DELETE POST</button>--}}
 {{--            </form>--}}
-            HEY THERE
-        @endcan
+{{--            HEY THERE--}}
+{{--        @endcan--}}
+
+        <a href="{{route('posts.edit', $post)}}">EDIT POST</a>
 </x-slot>
 </x-app-layout>
