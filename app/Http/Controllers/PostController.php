@@ -14,7 +14,6 @@ class PostController extends Controller
         $this->middleware('auth', ['except' => ['index','show']]);
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -45,9 +44,11 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        // TODO: Should it be done this way?
-        $request->validate((new \App\Http\Requests\StorePostRequest)->rules());
+        if($request->input('cancel')) {
+            return redirect(route('posts.index'));
+        }
 
+        $request->validated();
 
         // TODO: Could this be made DRY somehow?
         $post = new Post();
@@ -78,6 +79,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('edit', $post);
+
         return view('posts.edit', compact('post'));
     }
 
@@ -90,10 +93,10 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+        $this->authorize('update', $post);
+
         // TODO: Not sure if this does what it's supposed to do
         $request->validated();
-
-        // TODO: This should probably get cleaned up a bit
 
         $updatedpost = Post::find($post->id);
         $updatedpost->title = $request->title;
@@ -112,6 +115,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
+
         $post->delete();
 
         return redirect('/');

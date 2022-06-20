@@ -41,11 +41,19 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        if ($user !== null) {
-            return true;
-        }
 
-        return false;
+    }
+
+    /**
+     * Determine whether the user can edit the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function edit(User $user, Post $post)
+    {
+        return $user->id === $post->user_id;
     }
 
     /**
@@ -57,11 +65,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        if ($user->id === $post->user_id) {
-            return true;
-        }
-
-        return false;
+        return $user->id === $post->user_id;
     }
 
     /**
@@ -73,11 +77,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-//        if ($user->id === $post->user_id) {
-//            return true;
-//        }
-
-        return optional($user)->id === $post->user_id;
+        return $user->id === $post->user_id;
     }
 
     /**

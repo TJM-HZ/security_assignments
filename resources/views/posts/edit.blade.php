@@ -30,24 +30,35 @@
             </div>
             <br>
 
-            <div class="">
-                {{-- Here are the form buttons: save, reset and cancel --}}
-                <div class="control">
-                    <button type="submit">Update Post</button>
-                </div>
-                <div class="control">
-                    <button type="reset">Reset</button>
-                </div>
-                <div class="control">
-                    <a type="button" href="/posts">Cancel</a>
-                </div>
-            </div>
-        </form>
 
-        <form method="POST" action="{{ route('posts.destroy', $post) }}">
-            @csrf
-            @method('DELETE')
-                <button type="submit">DELETE POST</button>
-        </form>
+            <div class="w-3/4 flex justify-between">
+
+
+                <div>
+                    <form method="POST" action="{{route('posts.destroy', $post)}}">
+                        @csrf
+                        @method('delete')
+                        <x-input.buttons.pill-button class="bg-red-500 hover:bg-red-700 text-white"
+                                                     type="submit">
+                            Delete Post
+                        </x-input.buttons.pill-button>
+                    </form>
+
+                    <!-- FIXME: Cancel button is disabled until I can get it to play nice with form validation while maintaining the styling-->
+                    {{--                    <x-input.buttons.pill-button class="bg-red-500 hover:bg-red-700 text-white"--}}
+                    {{--                                                 type="reset" formnovalidate>--}}
+                    {{--                        Cancel--}}
+                    {{--                    </x-input.buttons.pill-button>--}}
+                    <x-input.buttons.pill-button class="bg-orange-500 hover:bg-orange-700 text-white"
+                                                 type="reset" formnovalidate>
+                        Reset
+                    </x-input.buttons.pill-button>
+                </div>
+
+                <x-input.buttons.pill-button class="bg-blue-500 hover:bg-blue-700 text-white"
+                                             type="submit">
+                    Update Post
+                </x-input.buttons.pill-button>
+            </div>
     </x-slot>
 </x-app-layout>
