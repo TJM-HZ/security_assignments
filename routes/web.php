@@ -20,7 +20,7 @@ Route::get('/', [PostController::class, 'index']);
 
 Route::resource('/posts', PostController::class);
 
-Route::resource('/users', UserController::class);
+// Route::resource('/users', UserController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
