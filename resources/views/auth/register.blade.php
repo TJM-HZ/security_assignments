@@ -45,6 +45,17 @@
                                 name="password_confirmation" required />
             </div>
 
+                <div class="mt-4">
+                    Password Requirements:
+                    <ul class="list-disc">
+                        <li>At least 16 characters</li>
+                        <li>At least 1 <i>lowercase letter</i></li>
+                        <li>At least 1 <i>UPPERCASE LETTER</i></li>
+                        <li>At least 1 <i>symbol (e.g., ! @ # $ % ^ & * ; : )</i></li>
+                    </ul>
+
+                </div>
+
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
