@@ -51,6 +51,7 @@
                         <li>At least 16 characters</li>
                         <li>At least 1 <i>lowercase letter</i></li>
                         <li>At least 1 <i>UPPERCASE LETTER</i></li>
+                        <li>At least 1 <i>number (0 - 9)</i></li>
                         <li>At least 1 <i>symbol (e.g., ! @ # $ % ^ & * ; : )</i></li>
                     </ul>
 
