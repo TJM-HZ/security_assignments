@@ -604,9 +604,6 @@ select {
 .relative {
   position: relative;
 }
-.left-2 {
-  left: 0.5rem;
-}
 .top-0 {
   top: 0px;
 }
@@ -615,12 +612,6 @@ select {
 }
 .left-0 {
   left: 0px;
-}
-.left-4 {
-  left: 1rem;
-}
-.left-6 {
-  left: 1.5rem;
 }
 .z-0 {
   z-index: 0;
