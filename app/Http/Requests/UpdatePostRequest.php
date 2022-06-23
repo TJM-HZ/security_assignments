@@ -23,9 +23,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title' => 'required|max:255',
-            'body' => 'required'
-        ];
+        // TODO: Is this correct?
+        return StorePostRequest::rules();
     }
 }

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="slot">
-        <form method="POST" action="{{route('posts.index')}}">
+        <form method="POST" action="{{route('posts.index')}}" class="w-3/4">
             @csrf
             <p class="text-3xl">
                 Create a new post
@@ -8,17 +8,19 @@
 
             <div class="field">
                 <div class="control">
-                    <input name="title" class="input @error('title') @enderror w-3/4"
+                    <input name="title" id="title" minlength="1" maxlength="200" class="input @error('title') @enderror w-full"
                            type="text" placeholder="Title">
                 </div>
                 @error('title')
                 <p class="text-red-600">{{ $message }}</p>
                 @enderror
             </div>
+            <!--TODO: Have the max char count be the character limit as defined in StorePostRequest.php-->
+            <div id="titleCounter" class="text-right"></div>
             <br>
             <div>
                 <div class="control">
-                <textarea name="body" class="textarea @error('body') @enderror w-3/4"
+                <textarea name="body" minlength="1" class="textarea @error('body') @enderror w-full"
                           rows="15" placeholder="Body text of your post"></textarea>
                 </div>
                 @error('body')
@@ -27,7 +29,7 @@
             </div>
             <br>
 
-            <div class="w-3/4 flex justify-between">
+            <div class="w-full flex justify-between">
 
 
                 <div>
@@ -50,3 +52,8 @@
         </form>
     </x-slot>
 </x-app-layout>
+<script>
+    wordCounter("title", "titleCounter", 200);
+
+
+</script>
