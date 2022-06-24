@@ -123,7 +123,7 @@
         }
 
         // Check if passwords match
-        if (password.value === password_c.value) {
+        if (password.value === password_c.value && password.value.length > 0) {
             li_match.className = clr_ok;
         } else {
             li_match.className = "text-inherit";
