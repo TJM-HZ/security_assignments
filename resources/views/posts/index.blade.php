@@ -1,6 +1,10 @@
 <x-app-layout>
     <x-slot name="slot">
+        <!-- TODO: There is probably an easier way of counting the amount of posts -->
+
+        <?php $count = 0 ?>
         @foreach($posts as $post)
+            <?php ++$count ?>
             <a href="{{route('posts.show', $post)}}">
                 <div class="flex justify-left">
                     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-m">
@@ -39,5 +43,8 @@
             </a>
             <br>
         @endforeach
+        @if($count === 0)
+            Hmmm... nothing has been posted yet.
+        @endif
     </x-slot>
 </x-app-layout>
