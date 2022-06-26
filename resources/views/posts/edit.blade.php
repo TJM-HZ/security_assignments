@@ -8,26 +8,26 @@
             </p> <br>
 
             <div>
-                <div class="control">
-                    <textarea name="title" id="title" minlength="1" maxlength="200" class="textarea @error('title') @enderror w-full"
-                              {{--                           type="text" --}}
-                              rows="2" placeholder="Title">{{$post->title}}</textarea>
-                </div>
                 @error('title')
                 <p class="text-red-600">{{ $message }}</p>
                 @enderror
+                <div class="control">
+                    <textarea name="title" id="title" minlength="1" class="textarea @error('title') @enderror w-full"
+                              {{--                           type="text" --}}
+                              rows="2" placeholder="Title">{{old('title', $post->title)}}</textarea>
+                </div>
             </div>
             <!--TODO: Have the max char count be the character limit as defined in StorePostRequest.php-->
             <div id="titleCounter" class="text-right"></div>
             <br>
             <div>
-                <div class="control">
-                <textarea name="body" minlength="1" class="textarea @error('body') @enderror w-full"
-                          rows="15" placeholder="Body text of your post">{{$post->body}}</textarea>
-                </div>
                 @error('body')
                 <p class="text-red-600">{{ $message }}</p>
                 @enderror
+                <div class="control">
+                <textarea name="body" id="body" minlength="1" class="textarea @error('body') @enderror w-full"
+                          rows="15" placeholder="Body text of your post">{{old('body', $post->body)}}</textarea>
+                </div>
             </div>
             <br>
 
@@ -41,13 +41,13 @@
                     {{--                        Cancel--}}
                     {{--                    </x-input.buttons.pill-button>--}}
                     <x-input.buttons.pill-button class="bg-orange-500 hover:bg-orange-700 text-white"
-                                                 type="reset" formnovalidate>
+                                                 type="reset" id="reset" formnovalidate>
                         Reset
                     </x-input.buttons.pill-button>
                 </div>
 
                 <x-input.buttons.pill-button class="bg-blue-500 hover:bg-blue-700 text-white"
-                                             type="submit">
+                                             type="submit" id="submit">
                     Update Post
                 </x-input.buttons.pill-button>
             </div>
@@ -56,3 +56,14 @@
 </x-app-layout>
 <script src="{{asset('js/wordCounter.js')}}"></script>
 <script>wordCounter("title", "titleCounter", 200);</script>
+<script>
+    reset = document.getElementById("reset");
+    submit = document.getElementById("submit")
+    title = document.getElementById("title");
+    body = document.getElementById("body");
+
+    reset.onclick = function() {
+        title.innerText = {{$post->title}};
+        body.innerText = {{$post->body}};
+    }
+</script>
