@@ -1,3 +1,4 @@
+<!-- FIXME: contents of navbar seem to be slightly offset in posts index-->
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,13 +21,14 @@
 
             @if(Auth::user() !== null)
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:flex sm:items-center sm:ml-6 space-x-3">
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
-                        {{ __('New Post') }}
-                    </x-nav-link>
-                </div>
+                <a href="{{route('posts.create')}}">
+                    <x-input.buttons.pill-button class="bg-blue-500 hover:bg-blue-700 text-white"
+                                                 type="submit">
+                        New Post
+                    </x-input.buttons.pill-button>
+                </a>
 
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">

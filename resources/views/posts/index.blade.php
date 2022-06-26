@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="slot">
+        <div class="w-3/4">
         <!-- TODO: There is probably an easier way of counting the amount of posts -->
 
         <?php $count = 0 ?>
@@ -46,5 +47,6 @@
         @if($count === 0)
             Hmmm... nothing has been posted yet.
         @endif
+        </div>
     </x-slot>
 </x-app-layout>
