@@ -6,10 +6,11 @@
                 Create a new post
             </p> <br>
 
-            <div class="field">
+            <div>
                 <div class="control">
-                    <input name="title" id="title" minlength="1" maxlength="200" class="input @error('title') @enderror w-full"
-                           type="text" placeholder="Title">
+                    <textarea name="title" id="title" minlength="1" maxlength="200" class="textarea @error('title') @enderror w-full"
+{{--                           type="text" --}}
+                           rows="2" placeholder="Title"></textarea>
                 </div>
                 @error('title')
                 <p class="text-red-600">{{ $message }}</p>
@@ -52,8 +53,5 @@
         </form>
     </x-slot>
 </x-app-layout>
-<script>
-    wordCounter("title", "titleCounter", 200);
-
-
-</script>
+<script src="{{asset('js/wordCounter.js')}}"></script>
+<script>wordCounter("title", "titleCounter", 200);</script>

@@ -1,28 +1,28 @@
 <x-app-layout>
     <x-slot name="slot">
-        <form method="POST" action="{{route('posts.show', $post)}}">
+        <form method="POST" action="{{route('posts.show', $post)}}" class="w-3/4">
             @csrf
             @method('PUT')
             <p class="text-3xl">
-                Edit post
+                Update post
             </p> <br>
 
-            <div class="field">
-{{--                <label class="label">Title</label>--}}
-                <div>
-                    <input name="title" id="title" class="input @error('title') @enderror w-3/4"
-                           type="text" placeholder="Title" value="{{$post->title}}">
+            <div>
+                <div class="control">
+                    <textarea name="title" id="title" minlength="1" maxlength="200" class="textarea @error('title') @enderror w-full"
+                              {{--                           type="text" --}}
+                              rows="2" placeholder="Title">{{$post->title}}</textarea>
                 </div>
                 @error('title')
                 <p class="text-red-600">{{ $message }}</p>
                 @enderror
             </div>
-
+            <!--TODO: Have the max char count be the character limit as defined in StorePostRequest.php-->
+            <div id="titleCounter" class="text-right"></div>
             <br>
             <div>
-{{--                <label class="label">Text</label>--}}
-                <div>
-                <textarea name="body" id="body" class="textarea @error('body') @enderror w-3/4"
+                <div class="control">
+                <textarea name="body" minlength="1" class="textarea @error('body') @enderror w-full"
                           rows="15" placeholder="Body text of your post">{{$post->body}}</textarea>
                 </div>
                 @error('body')
@@ -31,20 +31,10 @@
             </div>
             <br>
 
-
-            <div class="w-3/4 flex justify-between">
+            <div class="w-full flex justify-between">
 
 
                 <div>
-                    <form method="POST" action="{{route('posts.destroy', $post)}}">
-                        @csrf
-                        @method('delete')
-                        <x-input.buttons.pill-button class="bg-red-500 hover:bg-red-700 text-white"
-                                                     type="submit">
-                            Delete Post
-                        </x-input.buttons.pill-button>
-                    </form>
-
                     <!-- FIXME: Cancel button is disabled until I can get it to play nice with form validation while maintaining the styling-->
                     {{--                    <x-input.buttons.pill-button class="bg-red-500 hover:bg-red-700 text-white"--}}
                     {{--                                                 type="reset" formnovalidate>--}}
@@ -61,5 +51,8 @@
                     Update Post
                 </x-input.buttons.pill-button>
             </div>
+        </form>
     </x-slot>
 </x-app-layout>
+<script src="{{asset('js/wordCounter.js')}}"></script>
+<script>wordCounter("title", "titleCounter", 200);</script>

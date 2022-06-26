@@ -16,6 +16,17 @@
 {{--            HEY THERE--}}
 {{--        @endcan--}}
 
-        <a href="{{route('posts.edit', $post)}}">EDIT POST</a>
+    @can('edit', $post)
+
+        <!--TODO: Apparently wrapping interactive elements like buttons in anchor tags is considered a bad practice.
+                                        It works for now, but I should really try to find a more suitable alternative and experiment some more with components
+                                        at a later date (maybe not for this assignment)-->
+            <a href="{{route('posts.edit', $post)}}">
+                <x-input.buttons.pill-button class="bg-blue-500 hover:bg-blue-700 text-white"
+                                             type="submit">
+                    EDIT
+                </x-input.buttons.pill-button>
+            </a>
+        @endcan
 </x-slot>
 </x-app-layout>
