@@ -10,7 +10,7 @@ function wordCounter(inputId, counterId, maxCharacters){
         counter.classList.add("text-red-600");
     }
 
-    title.addEventListener("keyup", function()
+    input.addEventListener("keyup", function()
         {
             chars = input.value.split('')
             counter.innerText = `${chars.length} / ${maxCharacters}`;
