@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 // I wanted the landing page to also be the posts.index page.
 Route::get('/', [PostController::class, 'index']);
 
+Route::view('password-managers', 'password-managers');
+
 Route::resource('/posts', PostController::class);
+
+
 
 // Route::resource('/users', UserController::class);
 

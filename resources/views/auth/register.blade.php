@@ -5,7 +5,7 @@
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500"/>
             </a>
         </x-slot>
-
+        <b class="underline text-blue-500"><a href="/password-managers">Please consider using a password manager for easier and more secure registration and login</a></b>
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors"/>
 

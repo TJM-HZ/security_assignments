@@ -74,6 +74,8 @@
     reset.onclick = function() {
         title.innerHTML = '';
         body.innerHTML = '';
+        wordCounter("title", "titleCounter", 200);
+        wordCounter("body", "bodyCounter", 1000);
     }
 
     cancel = document.getElementById("cancel");
