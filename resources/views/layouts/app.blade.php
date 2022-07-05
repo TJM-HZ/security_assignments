@@ -20,7 +20,7 @@
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
             <!-- Page Content -->
-            <main class="bg-gray-100 p-6">
+            <main class="bg-blue-400 p-6">
                 {{ $slot }}
             </main>
         </div>
