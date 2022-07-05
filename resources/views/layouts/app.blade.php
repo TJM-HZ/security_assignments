@@ -17,10 +17,10 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-blue-400">
+        <div class="min-h-screen bg-black text-white">
             @include('layouts.navigation')
             <!-- Page Content -->
-            <main class="bg-inherit p-6">
+            <main class="bg-inherit text-inherit p-6">
                 {{ $slot }}
             </main>
         </div>
